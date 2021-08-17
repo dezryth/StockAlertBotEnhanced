@@ -5,6 +5,10 @@
             Designed and coded by:
             Prabhjot "Prince" Singh
             https://github.com/Prince25/StockAlertBot 
+
+						Enhanced by:
+						Scott Christian
+						https://github.com/dezryth/StockAlertBot
         -->
 		<title>StockAlertBot Settings</title>
 
@@ -77,6 +81,7 @@
 									v-on:update_interval="updateInterval"
 									v-on:update_delay="updateDelay"
 									v-on:update_open_url="updateOpenURL"
+									v-on:update_purchase_available="updatePurchaseAvailable"
 									v-on:update_desktop="updateDesktop"
 									v-on:update_proxies="updateProxies"
 									v-on:update_store_intervals="updateStoreIntervals"
@@ -251,6 +256,7 @@
 
 						// Boolean: Open URL, Desktop, Proxies
 						open_url: this.user_settings.OPEN_URL,
+						purchase_available: this.user_settings.PURCHASE_AVAILABLE,
 						desktop_notification: this.user_settings.DESKTOP,
 						proxies: this.user_settings.PROXIES,
 
@@ -331,6 +337,10 @@
 
 					updateOpenURL() {
 						this.$emit("update_open_url", this.open_url);
+					},
+
+					updatePurchaseAvailable() {
+						this.$emit("update_purchase_available", this.purchase_available);
 					},
 
 					updateDesktop() {
@@ -434,7 +444,7 @@
                                                     </v-btn>
                                                 </template>
                                                 <span>Opens the product url in your default browser when product is available.</span>
-                                            </v-tooltip>
+                                            </v-tooltip>																						
                                             
                                             <v-checkbox class="mt-0 ml-8 pl-8" v-model="desktop_notification" label="Desktop Notification" @change="updateDesktop"></v-checkbox>
                                             <v-tooltip bottom>
@@ -496,7 +506,7 @@
                                     <v-divider inset></v-divider>
 									<p style="font-size: 1.075rem!important;" class="text-button ma-4 mt-3 text-center">Amazon Settings</p>
 
-                                    <!--  Amazon Merchant HTML  -->
+                                    <!--  Amazon Merchant HTML  -->																		
                                     <div style="display: flex; align-items: center; justify-content: center;">
                                         <p class="text-overline mb-5" style="font-size: 1rem!important;">Region</p>
                                         <div style="width: 20%;" class="ml-4 mr-4">
@@ -512,7 +522,16 @@
                                                 If you want to only track prices of products sold by Amazon and no third party sellers, pick your region.
                                                 If you want to use a particular Merchant, choose "Custom" and type their merchant ID.
                                             </span>
-                                        </v-tooltip>
+                                        </v-tooltip>			
+																				<v-checkbox class="mt-0" v-model="purchase_available" label="Purchase Available" @change="updatePurchaseAvailable" dense></v-checkbox>
+																				<v-tooltip bottom>
+																						<template v-slot:activator="{ on, attrs }">
+																								<v-btn class="ma-3 mb-9" color="primary" fab x-small v-bind="attrs" v-on="on">
+																										<v-icon dark>mdi-help</v-icon>
+																								</v-btn>
+																						</template>
+																						<span>Will place order when inventory is found using automation. Not all stores supported.</span>
+																				</v-tooltip>																	
                                     </div>
                                     <div v-if="amazon_merchant_id === 'Custom'" style="display: flex; align-items: center; justify-content: center;">
                                         <p class="text-overline mb-5" style="font-size: 1rem!important;">Merchant ID</p>
@@ -1542,6 +1561,11 @@
 					// Update open URL boolean
 					updateOpenURL(boolean) {
 						this.userSettings.OPEN_URL = boolean;
+					},
+
+					// Update Purchase Available boolean
+					updatePurchaseAvailable(boolean) {
+						this.userSettings.PURCHASE_AVAILABLE = boolean;
 					},
 
 					// Update Desktop boolean

@@ -14,18 +14,10 @@ import {
 	WEBHOOK_URLS,
 } from "../../main.js";
 
-let openedDonateLink = false;
 export default function sendAlerts(product_url, title, image, store) {
 	if (DESKTOP) sendDesktopAlert(product_url, title, image, store);
 	if (EMAIL) sendAlertToEmail(environment_config.email, product_url, title, image, store);
 	if (OPEN_URL) {
-		if (!openedDonateLink) {
-			open(
-				"https://www.paypal.com/donate/?business=3Y9NEYR4TURT8&item_name=Making+software+and+hacking+the+world%21+%E2%99%A5&currency_code=USD"
-			);
-			openedDonateLink = true;
-			setTimeout(() => (openedDonateLink = false), 30 * 60 * 1000);
-		}
 		open(product_url);
 	}
 	if (SMS_METHOD == "Amazon Web Services")

@@ -106,3 +106,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Purchase Available credentials
+credentials

@@ -5,8 +5,8 @@ import Store from "./store.js";
 import * as dotenv from "dotenv";
 import * as log from "./utils/log.js";
 
-log.toConsole("info", chalk.yellow.bold("Thank you for using Stock Alert Bot!"));
-log.toConsole("info", chalk.red("https://github.com/Prince25/StockAlertBot\n"));
+log.toConsole("info", chalk.yellow.bold("Stock Alert Bot - Enhanced"));
+log.toConsole("info", chalk.red("https://github.com/dezryth/StockAlertBot\n"));
 log.toConsole("setup", "Starting setup...");
 
 log.toConsole("setup", "Importing necessary files...");
@@ -25,6 +25,7 @@ import ebuyerFunction from "./stores/ebuyer.js";
 import gamestopFunction from "./stores/gamestop.js";
 import microcenterFunction from "./stores/microcenter.js";
 import neweggFunction from "./stores/newegg.js";
+import staplesFunction from "./stores/staples.js";
 import targetFunction from "./stores/target.js";
 import tescoFunction from "./stores/tesco.js";
 import walmartFunction from "./stores/walmart.js";
@@ -41,6 +42,7 @@ const storeFunctionMap = {
 	gamestop: gamestopFunction,
 	microcenter: microcenterFunction,
 	newegg: neweggFunction,
+	staples: staplesFunction,
 	target: targetFunction,
 	tesco: tescoFunction,
 	walmart: walmartFunction,
@@ -54,6 +56,7 @@ export const {
 	TIME_BETWEEN_CHECKS,
 	STORE_INTERVALS,
 	OPEN_URL,
+	PURCHASE_AVAILABLE,
 	DESKTOP,
 	AMAZON_MERCHANT_ID,
 	TARGET_ZIP_CODE,

@@ -2,7 +2,9 @@ import chalk from "chalk";
 import { toConsole } from "./utils/log.js";
 import getMs from "./utils/interval-value.js";
 import sendAlerts from "./utils/notification/alerts.js";
-import { INTERVAL, STORE_INTERVALS, SUPPORTED_PROXY_DOMAINS, TIME_BETWEEN_CHECKS } from "./main.js";
+import purchase  from "./utils/purchase.js";
+import { INTERVAL, PURCHASE_AVAILABLE, STORE_INTERVALS, SUPPORTED_PROXY_DOMAINS, TIME_BETWEEN_CHECKS } from "./main.js";
+import fs from "fs";
 
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -86,6 +88,13 @@ export default class Store {
 							"!!"
 					);
 					item.notificationSent = true;
+					// Purchase Available with automation if setting is activated and StopPurchases file does not exist
+					
+					if (item.store === 'amazon' && PURCHASE_AVAILABLE && !fs.existsSync("config/StopPurchases")) {
+						purchase(item.store, item.url);
+						// Create file to prevent subsequent purchases. Hacky. TODO: Do better.
+						fs.openSync("config/StopPurchases", "a");
+					}
 				}
 			}
 

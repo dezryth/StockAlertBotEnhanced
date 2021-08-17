@@ -4,8 +4,9 @@ import { fetchPage } from "./utils/fetch.js";
 export default class Item {
 	constructor(url) {
 		this.url = url;
+		this.store = undefined;
 		this.notificationSent = false;
-		this.shouldSendNotification = true;
+		this.shouldSendNotification = true;		
 		this.html = undefined;
 		this.info = {
 			title: undefined,
@@ -20,6 +21,7 @@ export default class Item {
 	*/
 	async getPage(store, use_proxies, badProxies) {
 		const response = await fetchPage(this.url, store, use_proxies, badProxies);
+		this.store = store;
 		switch (response.status) {
 			case "ok":
 				this.html = response.html;

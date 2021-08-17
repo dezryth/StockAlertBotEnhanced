@@ -8,7 +8,7 @@ export default function amazon(html) {
 
 		const $ = cheerio.load(html);
 		const title = $(TITLE_SELECTOR).text()?.trim();
-		const image = $(IMAGE_SELECTOR).attr("data-old-hires");
+		const image = $(IMAGE_SELECTOR).attr("src");
 		let inventory = $(INVENTORY_SELECTOR).attr("value");
 
 		if (inventory != undefined) {

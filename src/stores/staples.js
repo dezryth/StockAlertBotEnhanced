@@ -1,15 +1,15 @@
 import cheerio from "cheerio";
 
-export default function microcenter(html) {
+export default function staples(html) {
 	try {
 		const TITLE_SELECTOR = "meta[property='og:title']";
-		const IMAGE_SELECTOR = ".productImageZoom";
+		const IMAGE_SELECTOR = ".image-gallery-ux2dot0__image_element";
 
 		const $ = cheerio.load(html);
-		const title = $(TITLE_SELECTOR).attr("content")?.replace(" - Micro Center", "");
-		const image = $(IMAGE_SELECTOR).attr("src");
+		const title = $(TITLE_SELECTOR).attr("content")?.replace(" | Staples", "");
+		const image = $(IMAGE_SELECTOR).attr("srcset").replace("1x", "");
 		let inventory = undefined;
-		if (html.includes("Outofstock")) {
+		if (html.includes("out of stock")) {
 			inventory = false;
 		} else {
 			inventory = true;
