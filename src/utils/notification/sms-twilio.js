@@ -12,7 +12,7 @@ export default async function sendAlertToSMSViaTwilio(twilio, product_url, title
 			to: "+" + twilio.to,
 			body: `***** In Stock at ${store} ***** \n\n${title} \n\n${product_url} \n\nStockAlertBot | ${moment().format(
 				"MMM Do YYYY - h:mm:ss A"
-			)}\nhttps://github.com/Prince25/StockAlertBot`,
+			)}\nhttps://github.com/dezryth/StockAlertBotEnhanced`,
 		});
 	} catch (error) {
 		log.toConsole("error", "Error sending SMS notification via Twilio: " + error);

@@ -20,9 +20,9 @@ export default async function sendAlertToWebhooks(WEBHOOK_URLS, product_url, tit
 							url: product_url,
 							color: "15736093",
 							footer: {
-								text: `StockAlertBot | ${moment().format(
+								text: `@StockAlerts | StockAlertBotEnhanced | ${moment().format(
 									"MMMM Do YYYY - h:mm:ss A"
-								)}\nhttps://github.com/Prince25/StockAlertBot`,
+								)}\nhttps://github.com/dezryth/StockAlertBotEnhanced`,
 							},
 							thumbnail: {
 								url: image,
@@ -82,7 +82,7 @@ export default async function sendAlertToWebhooks(WEBHOOK_URLS, product_url, tit
 							thumb_url: image,
 							footer: `StockAlertBot | ${moment().format(
 								"MMMM Do YYYY - h:mm:ss A"
-							)}\nhttps://github.com/Prince25/StockAlertBot`,
+							)}\nhttps://github.com/dezryth/StockAlertBotEnhanced`,
 						},
 					],
 				}),

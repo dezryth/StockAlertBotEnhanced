@@ -16,7 +16,7 @@ export default async function sendAlertToSMSViaAWS(service, product_url, title, 
 	var parameters = {
 		Message: `${title} in stock at ${store}! \n\n${product_url} \n\nStockAlertBot | ${moment().format(
 			"MMM Do YYYY - h:mm:ss A"
-		)}\nhttps://github.com/Prince25/StockAlertBot`,
+		)}\nhttps://github.com/dezryth/StockAlertBotEnhanced`,
 		MessageStructure: "string",
 		PhoneNumber: "+" + service.phone,
 	};

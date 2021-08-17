@@ -30,7 +30,7 @@ export default async function purchase(item) {
     //Fetch url from the browser with our code.
     await driver.get(item.url);
 
-    //Make sure price is less than a safeguard. TODO: Make this a setting.
+    //Make sure price is less than a safeguard.
     let price = await driver.findElement(By.xpath("//*[@id='price_inside_buybox']")).getText();
     price = parseFloat(price.replace("$", ""));
 

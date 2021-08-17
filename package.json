@@ -37,14 +37,14 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/Prince25/StockAlertBot.git"
+		"url": "git+https://github.com/dezryth/StockAlertBotEnhanced.git"
 	},
-	"author": "Prabhjot Singh",
+	"author": "Scott Christian",
 	"license": "MIT",
 	"bugs": {
-		"url": "https://github.com/Prince25/StockAlertBot/issues"
+		"url": "https://github.com/dezryth/StockAlertBotEnhanced/issues"
 	},
-	"homepage": "https://github.com/Prince25/StockAlertBot#readme",
+	"homepage": "https://github.com/dezryth/StockAlertBotEnhanced#readme",
 	"devDependencies": {
 		"eslint": "^7.22.0",
 		"eslint-config-prettier": "^8.1.0",

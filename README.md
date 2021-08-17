@@ -58,8 +58,8 @@ Currently, the following stores are supported:
 ## Prerequisites
 0. A Terminal: ([cmd](https://en.wikipedia.org/wiki/Cmd.exe) (Windows), [Terminal](https://en.wikipedia.org/wiki/Terminal_(macOS)) (macOS), or [Console](https://en.wikipedia.org/wiki/Linux_console) (Linux))
 1. Install [Node.js](https://nodejs.org/en/), either LTS or Current.
-2. Clone or [download](https://github.com/Prince25/StockAlertBot/archive/main.zip) this repository
-    `git clone https://github.com/Prince25/StockAlertBot.git`
+2. Clone or [download](https://github.com/dezryth/StockAlertBotEnhanced/archive/main.zip) this repository
+    `git clone https://github.com/dezryth/StockAlertBotEnhanced.git`
 3. Go to root directory
     `cd StockAlertBot`
 4. Install npm packages via a terminal
@@ -191,8 +191,8 @@ If you plan to use low interval rates OR track several items from one store, it 
 
 
 ## Feedback and Support
-To ensure this program continues to work, please report bugs by creating an [issue](https://github.com/Prince25/StockAlertBot/issues).\
-To ask questions, give feedback or suggestions among other things, create a new [discussion](https://github.com/Prince25/StockAlertBot/discussions).\
+To ensure this program continues to work, please report bugs by creating an [issue](https://github.com/dezryth/StockAlertBotEnhanced/issues).\
+To ask questions, give feedback or suggestions among other things, create a new [discussion](https://github.com/dezryth/StockAlertBotEnhanced/discussions).\
 To contribute code, programming questions/guidance, gaming sessions, and more, add me on Discord: Prince#0584\
 To provide monetary support, [donate](https://www.paypal.com/donate?business=3Y9NEYR4TURT8&item_name=Making+software+and+hacking+the+world%21+%E2%99%A5&currency_code=USD) or buy me a [Pizza](https://buymeacoff.ee/PrinceSingh) or [PayPal](https://paypal.me/PrinceSingh25) me 
 
