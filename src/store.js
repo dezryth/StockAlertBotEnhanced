@@ -91,7 +91,7 @@ export default class Store {
 					// Purchase Available with automation if setting is activated and StopPurchases file does not exist
 					
 					if (item.store === 'amazon' && PURCHASE_AVAILABLE && !fs.existsSync("config/StopPurchases")) {
-						purchase(item.store, item.url);
+						purchase(item.store, item.buyprice, item.url);
 						// Create file to prevent subsequent purchases. Hacky. TODO: Do better.
 						fs.openSync("config/StopPurchases", "a");
 					}

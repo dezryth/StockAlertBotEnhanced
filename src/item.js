@@ -5,6 +5,7 @@ export default class Item {
 	constructor(url) {
 		this.url = url;
 		this.store = undefined;
+		this.buyprice = undefined;
 		this.notificationSent = false;
 		this.shouldSendNotification = true;		
 		this.html = undefined;

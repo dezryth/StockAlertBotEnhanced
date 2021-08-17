@@ -2,7 +2,7 @@ import { By, Builder } from "selenium-webdriver";
 import "chromedriver";
 import fs from "fs";
 
-export default async function purchase(store, url) {
+export default async function purchase(store, buyprice, url) {
 
   let EMAIL = "";
   let PASSWORD = "";
@@ -32,7 +32,7 @@ export default async function purchase(store, url) {
     let price = await driver.findElement(By.xpath("//*[@id='price_inside_buybox']")).getText();
     price = parseFloat(price.replace("$", ""));
 
-    if (price < 1900.00) {
+    if (price < buyprice) {
       //Find and click buy now button
       await driver.findElement(By.xpath("/html//input[@id='buy-now-button']")).click();
 

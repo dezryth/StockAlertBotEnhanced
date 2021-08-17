@@ -2,7 +2,8 @@
     "URLS": [
         "https://www.amazon.com/dp/B08HR5SXPS",
         "https://www.amazon.com/dp/B08J5F3G18",
-        "https://www.amazon.com/dp/B08HH5WF97"
+        "https://www.amazon.com/dp/B08HH5WF97",
+        "https://www.amazon.com/dp/B09B4929ZV"
     ],
     "INTERVAL": {
         "unit": "seconds",
