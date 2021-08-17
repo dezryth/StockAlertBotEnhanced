@@ -144,7 +144,7 @@
 					readonly
 					type="text"
 					hide-details
-					:value="url.name + ' ' + url.url + ' $' + url.buyprice"
+					:value="url.name ? (url.name + ' ' + url.url + ' $' + url.buyprice) : (url.url + ' $' + url.buyprice)"
 					:append-outer-icon="'mdi-close'"
 					@click:append-outer="remove"
 				></v-text-field>`,
@@ -163,7 +163,7 @@
 			computed: {
 				formValid() {
 					// Return true if all fields have a value.
-					var result = ((this.url.name.length > 0) && (this.url.url.length > 0) && (this.url.buyprice > 0))
+					var result = (/*(this.url.name.length > 0) &&*/ (this.url.url.length > 0) && (this.url.buyprice > 0))
 					return result;
 				}
 			},
@@ -190,7 +190,7 @@
                                         hide-details
                                         clear-icon="mdi-close-circle"
                                         type="text"
-                                        label="Enter Name"
+                                        label="Enter Name (Optional)"
                                         v-model="url.name"
                                     ></v-text-field>
                                     <v-tooltip bottom>
@@ -199,7 +199,7 @@
                                                 <v-icon dark>mdi-help</v-icon>
                                             </v-btn>
                                         </template>
-                                        <span>Enter a useful label/name for this item.</span>
+                                        <span>Enter a useful label/name for this item. This field is optional.</span>
                                     </v-tooltip>
 																</div>
 																<div class="ma-0 pa-0" style="max-width: 65%; display: flex; align-items: baseline;margin: auto !important;">

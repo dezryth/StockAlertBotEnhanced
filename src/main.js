@@ -224,7 +224,7 @@ function getDomainName(url) {
 function getStoreURLMap() {
 	const storeUrlMap = {};
 	for (const url of URLS) {
-		const storeName = getDomainName(url);
+		const storeName = getDomainName(url.url);
 		if ({}.propertyIsEnumerable.call(storeUrlMap, storeName)) {
 			// If store already in map
 			storeUrlMap[storeName].push(url); // ... add url to array

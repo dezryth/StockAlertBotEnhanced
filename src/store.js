@@ -2,7 +2,7 @@ import chalk from "chalk";
 import { toConsole } from "./utils/log.js";
 import getMs from "./utils/interval-value.js";
 import sendAlerts from "./utils/notification/alerts.js";
-import purchase  from "./utils/purchase.js";
+import purchase from "./utils/purchase.js";
 import { INTERVAL, PURCHASE_AVAILABLE, STORE_INTERVALS, SUPPORTED_PROXY_DOMAINS, TIME_BETWEEN_CHECKS } from "./main.js";
 import fs from "fs";
 
@@ -49,9 +49,9 @@ export default class Store {
 				toConsole(
 					"check",
 					"Checking " +
-						chalk.magenta.bold(item.info.title) +
-						" at " +
-						chalk.cyan.bold(this.name.toUpperCase())
+					chalk.magenta.bold(item.name ? item.name : item.info.title) +
+					" at " +
+					chalk.cyan.bold(this.name.toUpperCase())
 				);
 			else toConsole("check", "Checking url: " + chalk.magenta(item.url));
 
@@ -74,8 +74,8 @@ export default class Store {
 					toConsole(
 						"info",
 						chalk.magenta.bold(item.info.title) +
-							" is still in stock at " +
-							chalk.cyan.bold(this.name.toUpperCase())
+						" is still in stock at " +
+						chalk.cyan.bold(this.name.toUpperCase())
 					);
 				}
 				if (item.shouldSendNotification && !item.notificationSent) {
@@ -83,17 +83,23 @@ export default class Store {
 					toConsole(
 						"stock",
 						chalk.magenta.bold(item.info.title) +
-							" is in stock at " +
-							chalk.cyan.bold(this.name.toUpperCase()) +
-							"!!"
+						" is in stock at " +
+						chalk.cyan.bold(this.name.toUpperCase()) +
+						"!!"
 					);
 					item.notificationSent = true;
-					// Purchase Available with automation if setting is activated and StopPurchases file does not exist
-					
-					if (item.store === 'amazon' && PURCHASE_AVAILABLE && !fs.existsSync("config/StopPurchases")) {
-						purchase(item.store, item.buyprice, item.url);
-						// Create file to prevent subsequent purchases. Hacky. TODO: Do better.
-						fs.openSync("config/StopPurchases", "a");
+				}
+				if (item.info.inventory) {
+					// Purchase Available with automation if setting is activated and StopPurchases file does not exist					
+					if (item.store === 'amazon' && PURCHASE_AVAILABLE) {
+						if (!item.purchased)
+						{
+							purchase(item);
+						}
+						else
+						{
+							toConsole("alert", chalk.red.bold("A purchase attempt for this item has already been performed in this run."));
+						}						
 					}
 				}
 			}
@@ -104,14 +110,14 @@ export default class Store {
 		toConsole(
 			"info",
 			"Waiting " +
-				chalk.yellow.bold(
-					STORE_INTERVALS[this.name]
-						? STORE_INTERVALS[this.name].value + " " + STORE_INTERVALS[this.name].unit
-						: INTERVAL.value + " " + INTERVAL.unit
-				) +
-				" to check " +
-				chalk.cyan.bold(this.name.toUpperCase()) +
-				" again"
+			chalk.yellow.bold(
+				STORE_INTERVALS[this.name]
+					? STORE_INTERVALS[this.name].value + " " + STORE_INTERVALS[this.name].unit
+					: INTERVAL.value + " " + INTERVAL.unit
+			) +
+			" to check " +
+			chalk.cyan.bold(this.name.toUpperCase()) +
+			" again"
 		);
 
 		setTimeout(this.monitorItems.bind(this), this.interval);

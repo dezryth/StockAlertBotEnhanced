@@ -1,14 +1,16 @@
 import { By, Builder } from "selenium-webdriver";
+import chalk from "chalk";
+import { toConsole } from "./log.js";
 import "chromedriver";
 import fs from "fs";
 
-export default async function purchase(store, buyprice, url) {
+export default async function purchase(item) {
 
   let EMAIL = "";
   let PASSWORD = "";
 
   // Amazon  
-  if (store === 'amazon') {
+  if (item.store === 'amazon') {
     
     // Get credentials
     fs.readFile("config/credentials", 'utf8', (err, jsonString) => {
@@ -26,13 +28,13 @@ export default async function purchase(store, buyprice, url) {
     let driver = await new Builder().forBrowser("chrome").build();
 
     //Fetch url from the browser with our code.
-    await driver.get(url);
+    await driver.get(item.url);
 
     //Make sure price is less than a safeguard. TODO: Make this a setting.
     let price = await driver.findElement(By.xpath("//*[@id='price_inside_buybox']")).getText();
     price = parseFloat(price.replace("$", ""));
 
-    if (price < buyprice) {
+    if (price < item.buyprice && !item.purchased) {
       //Find and click buy now button
       await driver.findElement(By.xpath("/html//input[@id='buy-now-button']")).click();
 
@@ -44,10 +46,17 @@ export default async function purchase(store, buyprice, url) {
 
       //Click place order button
       await driver.findElement(By.xpath("//input[@name='placeYourOrder1']")).click();
+      toConsole("alert", chalk.green.bold("A purchase attempt was made on " + item.name + " at $" + price + "!!!"));
 
-      //It is always a safe practice to quit the browser after execution
-      //await driver.quit();
+      //Update purchased property of item
+      item.updatePurchased();
     }
+    else
+    {
+      toConsole("alert", chalk.red.bold("The price for the item, $" + price + " is higher than your max buy price of $" + item.buyprice + "."));
+      await driver.quit();
+    }
+
   }
 
   // Other store...

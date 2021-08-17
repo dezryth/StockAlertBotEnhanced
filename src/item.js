@@ -3,9 +3,11 @@ import { fetchPage } from "./utils/fetch.js";
 
 export default class Item {
 	constructor(url) {
-		this.url = url;
-		this.store = undefined;
-		this.buyprice = undefined;
+		this.name = url.name;
+		this.url = url.url;
+		this.buyprice = url.buyprice;
+		this.store = undefined;		
+		this.purchased = false;
 		this.notificationSent = false;
 		this.shouldSendNotification = true;		
 		this.html = undefined;
@@ -66,5 +68,13 @@ export default class Item {
 			toFile(store, "Unable to get information", Object.assign(this, info));
 			return false;
 		}
+	}
+
+	/*
+		Set item as purchased so it is not purchased multiple times
+		TODO: Update to support purchasing up to a set amount.
+	*/
+	updatePurchased() {
+		this.purchased = true;
 	}
 }
