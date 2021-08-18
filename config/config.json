@@ -19,6 +19,11 @@
             "name": "XFX Speedster MERC308 Radeon RX 6600 XT Black",
             "url": "https://www.amazon.com/dp/B09B4929ZV",
             "buyprice": 500
+        },
+        {
+            "name": "MSI Radeon RX 6600 XT",
+            "url": "https://www.newegg.com/msi-radeon-rx-6600-xt-rx-6600-xt-gaming-x-8g/p/N82E16814137681",
+            "buyprice": 590
         }
     ],
     "INTERVAL": {

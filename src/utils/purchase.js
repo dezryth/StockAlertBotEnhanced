@@ -36,6 +36,9 @@ export default async function purchase(item) {
     price = parseFloat(price.replace("$", ""));
 
     if (price < item.buyprice && !item.purchased) {
+      //Update purchased property of item
+      item.updatePurchased();
+
       //Find and click buy now button
       await driver.findElement(By.xpath("/html//input[@id='buy-now-button']")).click();
 
@@ -49,8 +52,6 @@ export default async function purchase(item) {
       await driver.findElement(By.xpath("//input[@name='placeYourOrder1']")).click();
       toConsole("alert", chalk.green.bold("A purchase attempt was made on " + item.name + " at $" + price + "!!!"));
 
-      //Update purchased property of item
-      item.updatePurchased();
     }
     else {
       toConsole("alert", chalk.red.bold("The price for the item, $" + price + " is higher than your max buy price of $" + item.buyprice + "."));
@@ -88,6 +89,9 @@ export default async function purchase(item) {
     price = parseFloat(price.replace("$", ""));
 
     if (price < item.buyprice && !item.purchased) {
+      //Update purchased property of item
+      item.updatePurchased();
+
       //Find and click add to cart button
       await driver.findElement(By.xpath("//div[@id='ProductBuy']//*[contains(@class, 'btn-primary')]")).click();
 
@@ -108,15 +112,11 @@ export default async function purchase(item) {
 
       //Confirm Delivery
       await driver.wait(until.elementLocated(By.xpath("//button[contains(text(), 'Continue to delivery')]")), 5000).click();
-      
       //Enter CCV Code
       await driver.findElement(By.xpath("//input[contains(@class, 'form-text mask-cvv-4')]")).sendKeys(CCV);
 
       //Click "Place Order" button
       await driver.wait(until.elementLocated(By.xpath("//button[@id='btnCreditCard']"))).click();
-
-      //Update purchased property of item
-      item.updatePurchased();
     }
     else {
       toConsole("alert", chalk.red.bold("The price for the item, $" + price + " is higher than your max buy price of $" + item.buyprice + "."));
