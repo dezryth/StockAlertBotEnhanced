@@ -478,6 +478,16 @@
                                                 <span>Sends a desktop notification.</span>
                                             </v-tooltip>
 
+																						<v-checkbox class="mt-0" v-model="purchase_available" label="Purchase Available" @change="updatePurchaseAvailable" dense></v-checkbox>
+																						<v-tooltip bottom>
+																								<template v-slot:activator="{ on, attrs }">
+																										<v-btn class="ma-3 mb-9" color="primary" fab x-small v-bind="attrs" v-on="on">
+																												<v-icon dark>mdi-help</v-icon>
+																										</v-btn>
+																								</template>
+																								<span>Will place order when inventory is found using automation. Not all stores supported.</span>
+																						</v-tooltip>	
+
                                             <v-checkbox class="mt-0 ml-8 pl-8" v-model="proxies" label="Proxies" @change="updateProxies"></v-checkbox>
                                             <v-tooltip bottom>
                                                 <template v-slot:activator="{ on, attrs }">
@@ -544,16 +554,7 @@
                                                 If you want to only track prices of products sold by Amazon and no third party sellers, pick your region.
                                                 If you want to use a particular Merchant, choose "Custom" and type their merchant ID.
                                             </span>
-                                        </v-tooltip>			
-																				<v-checkbox class="mt-0" v-model="purchase_available" label="Purchase Available" @change="updatePurchaseAvailable" dense></v-checkbox>
-																				<v-tooltip bottom>
-																						<template v-slot:activator="{ on, attrs }">
-																								<v-btn class="ma-3 mb-9" color="primary" fab x-small v-bind="attrs" v-on="on">
-																										<v-icon dark>mdi-help</v-icon>
-																								</v-btn>
-																						</template>
-																						<span>Will place order when inventory is found using automation. Not all stores supported.</span>
-																				</v-tooltip>																	
+                                        </v-tooltip>																		
                                     </div>
                                     <div v-if="amazon_merchant_id === 'Custom'" style="display: flex; align-items: center; justify-content: center;">
                                         <p class="text-overline mb-5" style="font-size: 1rem!important;">Merchant ID</p>

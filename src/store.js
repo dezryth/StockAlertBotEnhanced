@@ -91,7 +91,7 @@ export default class Store {
 				}
 				if (item.info.inventory) {
 					// Purchase Available with automation if setting is activated and StopPurchases file does not exist					
-					if (item.store === 'amazon' && PURCHASE_AVAILABLE) {
+					if ((item.store === 'amazon' || item.store === 'newegg') && PURCHASE_AVAILABLE) {
 						if (!item.purchased)
 						{
 							purchase(item);
