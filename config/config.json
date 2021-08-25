@@ -16,23 +16,48 @@
             "buyprice": 1150
         },
         {
-            "name": "XFX Speedster MERC308 Radeon RX 6600 XT Black",
-            "url": "https://www.amazon.com/dp/B09B4929ZV",
-            "buyprice": 500
+            "name": "ASROCK RX 6600 XT",
+            "url": "https://www.newegg.com/asrock-radeon-rx-6600-xt-rx6600xt-cld-8g/p/N82E16814930063",
+            "buyprice": 400
         },
         {
-            "name": "MSI Radeon RX 6600 XT",
-            "url": "https://www.newegg.com/msi-radeon-rx-6600-xt-rx-6600-xt-gaming-x-8g/p/N82E16814137681",
-            "buyprice": 590
+            "name": "XFX SPEEDSTER QICK308 RADEON RX 6600 XT BLACK",
+            "url": "https://www.newegg.com/xfx-radeon-rx-6600-xt-rx-66xt8lbdq/p/N82E16814150862",
+            "buyprice": 400
+        },
+        {
+            "name": "ASUS ROG STRIX 3090",
+            "url": "https://www.newegg.com/asus-geforce-rtx-3090-rog-strix-rtx3090-o24g-gaming/p/N82E16814126456",
+            "buyprice": 2300
+        },
+        {
+            "name": "ASUS TUF Gaming NVIDIA GeForce RTX 3090 OC",
+            "url": "https://www.amazon.com/dp/B08HJGNJ81",
+            "buyprice": 2130
+        },
+        {
+            "name": "EVGA 3080 FTW 3 Ultra - CHEAP MISTAKE",
+            "url": "https://www.amazon.com/dp/B08HR3Y5GQ",
+            "buyprice": 25
+        },
+        {
+            "name": "EVGA 3090 FTW3",
+            "url": "https://www.newegg.com/evga-geforce-rtx-3090-24g-p5-3987-kr/p/N82E16814487526",
+            "buyprice": 2000
+        },
+        {
+            "name": "EVGA GeForce RTX 3090 XC3",
+            "url": "https://www.newegg.com/evga-geforce-rtx-3090-24g-p5-3971-kr/p/N82E16814487527",
+            "buyprice": 1800
         }
     ],
     "INTERVAL": {
         "unit": "seconds",
-        "value": 10
+        "value": 5
     },
     "TIME_BETWEEN_CHECKS": {
         "unit": "seconds",
-        "value": 3
+        "value": 5
     },
     "STORE_INTERVALS": {
         "microcenter": {
@@ -50,12 +75,10 @@
     "AMAZON_MERCHANT_ID": "ATVPDKIKX0DER",
     "TARGET_ZIP_CODE": "90024",
     "TARGET_KEY": "ff457966e64d5e877fdbad070f276d18ecec4a01",
-    "WEBHOOK_URLS": [
-        "https://discordapp.com/api/webhooks/876816342983012452/FzW6B7EWFK_X85b9dho0PAxekQK7rID3NVZLeipbUcA_H1_KRqTPbiCKxAzBXw-oxOGZ"
-    ],
+    "WEBHOOK_URLS": [],
     "PROXIES": false,
     "EMAIL": false,
-    "SMS_METHOD": "None",
+    "SMS_METHOD": "Pushover",
     "SUPPORTED_STORES_DOMAINS": [
         "amazon",
         "antonline",

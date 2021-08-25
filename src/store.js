@@ -49,10 +49,14 @@ export default class Store {
 				toConsole(
 					"check",
 					"Checking " +
-					chalk.magenta.bold(item.name ? item.name : item.info.title) +
+					chalk.magenta.bold(item.name ? item.name : item.info.title  + " at " + item.store) +
 					" at " +
 					chalk.cyan.bold(this.name.toUpperCase())
 				);
+      else if (item.name)
+      {
+        toConsole("check", "Checking : " + chalk.magenta(item.name));
+      }
 			else toConsole("check", "Checking url: " + chalk.magenta(item.url));
 
 			// Get Item Page
@@ -79,7 +83,7 @@ export default class Store {
 					);
 				}
 				if (item.shouldSendNotification && !item.notificationSent) {
-					sendAlerts(item.url, item.info.title, item.info.image, this.name);
+					sendAlerts(item);
 					toConsole(
 						"stock",
 						chalk.magenta.bold(item.info.title) +
@@ -87,21 +91,23 @@ export default class Store {
 						chalk.cyan.bold(this.name.toUpperCase()) +
 						"!!"
 					);
+
+          // Purchase Available with automation if setting is activated and StopPurchases file does not exist					
+          if ((item.store === 'amazon' || item.store === 'newegg') && PURCHASE_AVAILABLE) {
+            if (!item.purchaseAttempted)
+            {
+              var success = await purchase(item);
+              sendAlerts(item, success);
+            }
+            else
+            {
+              toConsole("alert", chalk.red.bold("A purchase attempt for this item has already been performed in this run."));
+            }						
+          }          
+
 					item.notificationSent = true;
 				}
-				if (item.info.inventory) {
-					// Purchase Available with automation if setting is activated and StopPurchases file does not exist					
-					if ((item.store === 'amazon' || item.store === 'newegg') && PURCHASE_AVAILABLE) {
-						if (!item.purchased)
-						{
-							purchase(item);
-						}
-						else
-						{
-							toConsole("alert", chalk.red.bold("A purchase attempt for this item has already been performed in this run."));
-						}						
-					}
-				}
+				
 			}
 
 			if (index != length - 1) await sleep(this.delay);

@@ -83,7 +83,9 @@
 								v-on:update_sms_email_pass="updateSMSEmailPass" v-on:update_sms_email_carrier="updateSMSEmailCarrier"
 								v-on:update_sms_email_phone="updateSMSEmailPhone" v-on:update_sms_twilio_sid="updateSMSTwilioSID"
 								v-on:update_sms_twilio_auth="updateSMSTwilioAuth" v-on:update_sms_twilio_from="updateSMSTwilioFrom"
-								v-on:update_sms_twilio_to="updateSMSTwilioTo" />
+								v-on:update_sms_twilio_to="updateSMSTwilioTo"
+                v-on:update_push_pushover_user="updatePushoverUser"
+                v-on:update_push_pushover_token="updatePushoverToken" />
 						</v-tab-item>
 
 						<!--  Debug Tab  -->
@@ -686,6 +688,8 @@
                                         v-on:update_twilio_auth="$emit('update_sms_twilio_auth', $event)"
                                         v-on:update_twilio_from="$emit('update_sms_twilio_from', $event)"
                                         v-on:update_twilio_to="$emit('update_sms_twilio_to', $event)"
+                                        v-on:update_pushover_user="$emit('update_push_pushover_user', $event)"
+                                        v-on:update_pushover_token="$emit('update_push_pushover_token', $event)"
                                     />
                                 </div>
 
@@ -938,7 +942,7 @@
 			data: function () {
 				return {
 					method: this.user_settings.SMS_METHOD,
-					methods: ["None", "Amazon Web Services", "Email", "Twilio"],
+					methods: ["None", "Amazon Web Services", "Email", "Pushover", "Twilio"],
 				};
 			},
 
@@ -990,6 +994,16 @@
                                         v-on:update_auth="$emit('update_twilio_auth', $event)"
                                         v-on:update_from="$emit('update_twilio_from', $event)"
                                         v-on:update_to="$emit('update_twilio_to', $event)"
+                                        class="ma-4" 
+                                    />
+                                </div>
+
+                                <!--  PUSHOVER HTML  -->
+                                <div v-if="method === 'Pushover'" style="width: 100%;">
+                                    <pushover 
+                                        v-bind:settings="env_settings"
+                                        v-on:update_user="$emit('update_pushover_user', $event)"
+                                        v-on:update_token="$emit('update_pushover_token', $event)"
                                         class="ma-4" 
                                     />
                                 </div>
@@ -1386,6 +1400,61 @@
                             </div>`,
 		});
 
+    Vue.component("pushover", {
+			props: ["settings"],
+			data: function () {
+				return {
+					user: this.settings.PUSHOVER_USER,
+					token: this.settings.PUSHOVER_TOKEN,
+				};
+			},
+
+			methods: {
+				updateUser() {
+					this.$emit("update_user", this.user);
+				},
+				updateToken() {
+					this.$emit("update_token", this.token);				
+				},
+			},
+
+			template: `<div style="margin: 0px !important">
+
+                                <!--  User HTML  -->
+                                <div style="display: flex; align-items: center; justify-content: center;">
+                                    <p class="text-overline mb-5" style="font-size: 1rem!important;">User Key</p>
+                                    <div style="width: 40%;" class="ml-4 mr-4">
+                                        <v-text-field v-model="user" single-line type="text" @change="updateUser" dense solo clearable />
+                                    </div>
+                                    <v-tooltip bottom>
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <v-btn class="ma-3 mb-9" color="primary" fab x-small v-bind="attrs" v-on="on" >
+                                                <v-icon dark>mdi-help</v-icon>
+                                            </v-btn>
+                                        </template>
+                                        <span>Pushover User Key.</span>
+                                    </v-tooltip>
+                                </div>
+
+                                <!--  Token HTML  -->
+                                <div style="display: flex; align-items: center; justify-content: center;">
+                                    <p class="text-overline mb-5" style="font-size: 1rem!important;">Token</p>
+                                    <div style="width: 40%;" class="ml-4 mr-4">
+                                        <v-text-field v-model="token" single-line type="text" @change="updateToken" dense solo clearable />
+                                    </div>
+                                    <v-tooltip bottom>
+                                        <template v-slot:activator="{ on, attrs }">
+                                            <v-btn class="ma-3 mb-9" color="primary" fab x-small v-bind="attrs" v-on="on" >
+                                                <v-icon dark>mdi-help</v-icon>
+                                            </v-btn>
+                                        </template>
+                                        <span>Pushover token.</span>
+                                    </v-tooltip>
+                                </div>
+
+                            </div>`,
+		});
+
 		/*
 							Main Component
 					*/
@@ -1453,6 +1522,14 @@
 							)
 								sms_invalid = true;
 							break;
+
+            case "Pushover":
+              if (
+                !this.envSettings.PUSHOVER_USER ||
+                !this.envSettings.PUSHOVER_TOKEN
+              )
+                sms_invalid = true;
+              break;
 					}
 
 					// Update Message
@@ -1736,6 +1813,16 @@
 				// Update to email
 				updateEmailTo(to) {
 					this.envSettings.EMAIL_TO = to;
+				},
+
+        // Update Pushover User Key
+        updatePushoverUser(user) {
+					this.envSettings.PUSHOVER_USER = user;
+				},
+
+        // Update Pushover Token
+        updatePushoverToken(token) {
+					this.envSettings.PUSHOVER_TOKEN = token;
 				},
 
 				// Send settings via a POST request to be saved

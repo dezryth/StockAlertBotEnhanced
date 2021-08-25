@@ -7,7 +7,7 @@ export default class Item {
 		this.url = url.url;
 		this.buyprice = url.buyprice;
 		this.store = undefined;		
-		this.purchased = false;
+		this.purchaseAttempted = false;
 		this.notificationSent = false;
 		this.shouldSendNotification = true;		
 		this.html = undefined;
@@ -55,8 +55,8 @@ export default class Item {
 	async extractInformation(store, storeFunction) {
 		const info = await storeFunction(this.html);
 		if (info.title && info.image && typeof info.inventory == "boolean") {
-			// Change notification status to false once item goes out of stock
-			if (this.notificationSent && !info.inventory) this.notificationSent = false;
+			// Change notification status to false once item goes out of stock (TODO: Currently, not reliable enough to not just constantly fail and send notifications)
+			// if (this.notificationSent && !info.inventory) this.notificationSent = false;
 
 			this.shouldSendNotification = !this.info.inventory && info.inventory; // Check change in item stock
 			this.info = info;
@@ -74,7 +74,7 @@ export default class Item {
 		Set item as purchased so it is not purchased multiple times
 		TODO: Update to support purchasing up to a set amount.
 	*/
-	updatePurchased() {
-		this.purchased = true;
+	updatePurchaseAttempted() {
+		this.purchaseAttempted = true;
 	}
 }

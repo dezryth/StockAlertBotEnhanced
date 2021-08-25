@@ -18,7 +18,7 @@ export default async function sendAlertToSMSViaEmail(sms_email, product_url, tit
 		subject: "***** In Stock at " + store + " *****",
 		text: `${title} \n\n${product_url} \n\nStockAlertBot | ${moment().format(
 			"MMM Do YYYY - h:mm:ss A"
-		)}\nhttps://github.com/Prince25/StockAlertBot`,
+		)}\nhttps://github.com/dezryth/StockAlertBotEnhanced`,
 		attachments: [
 			{
 				filename: "Product.jpg",

@@ -141,6 +141,11 @@ if (EMAIL || SMS_METHOD !== "None") {
 			from: process.env.SMS_TWILIO_FROM_NUMBER,
 			to: process.env.SMS_TWILIO_TO_NUMBER,
 		},
+
+    pushover: {
+      user: process.env.PUSHOVER_USER,
+      token: process.env.PUSHOVER_TOKEN,
+    },
 	};
 
 	if (

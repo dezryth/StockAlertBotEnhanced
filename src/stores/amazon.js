@@ -13,7 +13,9 @@ export default function amazon(html) {
 
 		if (inventory != undefined) {
 			inventory = true;
-		} else if (inventory == undefined) {
+		} 
+    else 
+    {
 			inventory = false;
 		}
 
