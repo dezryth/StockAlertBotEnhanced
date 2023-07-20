@@ -35,11 +35,17 @@ export default async function purchase(item) {
     //Make sure price is less than a safeguard.
     let price = 99999999
     try {
-      price = await driver.findElement(By.xpath("//*[@id='price_inside_buybox']")).getText();;
+      price = await driver.findElement(By.xpath("//*[@id='corePrice_feature_div']//div")).getText();
     }
     catch (e) {
       toConsole("alert", chalk.red.bold(e)); 
-    }
+    }      
+
+    // Format price to remove $ and /n
+    if (price)
+    {
+      price = price.replace("\n", ".").replace("$", "");
+    }    
 
     if (price < item.buyprice && !item.purchased) {
       //Update purchased property of item

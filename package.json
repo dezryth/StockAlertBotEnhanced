@@ -18,7 +18,7 @@
 		"axios": "^0.21.1",
 		"chalk": "^4.1.0",
 		"cheerio": "^1.0.0-rc.5",
-		"chromedriver": "^92.0.1",
+		"chromedriver": "^114.0.3",
 		"cors": "^2.8.5",
 		"dotenv": "^8.2.0",
 		"envfile": "^6.14.0",

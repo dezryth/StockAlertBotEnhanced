@@ -1,63 +1,18 @@
 {
     "URLS": [
         {
-            "name": "MSI Gaming GeForce RTX 3080 10GB GDRR6X",
-            "url": "https://www.amazon.com/dp/B08HR5SXPS",
-            "buyprice": 800
-        },
-        {
-            "name": "EVGA GeForce RTX 3090 FTW3 Ultra Gaming, 24GB",
-            "url": "https://www.amazon.com/dp/B08J5F3G18",
-            "buyprice": 1850
-        },
-        {
-            "name": "ASUS TUF Gaming NVIDIA GeForce RTX 3080 OC",
-            "url": "https://www.amazon.com/dp/B08HH5WF97",
-            "buyprice": 1150
-        },
-        {
-            "name": "ASROCK RX 6600 XT",
-            "url": "https://www.newegg.com/asrock-radeon-rx-6600-xt-rx6600xt-cld-8g/p/N82E16814930063",
-            "buyprice": 400
-        },
-        {
-            "name": "XFX SPEEDSTER QICK308 RADEON RX 6600 XT BLACK",
-            "url": "https://www.newegg.com/xfx-radeon-rx-6600-xt-rx-66xt8lbdq/p/N82E16814150862",
-            "buyprice": 400
-        },
-        {
-            "name": "ASUS ROG STRIX 3090",
-            "url": "https://www.newegg.com/asus-geforce-rtx-3090-rog-strix-rtx3090-o24g-gaming/p/N82E16814126456",
-            "buyprice": 2300
-        },
-        {
-            "name": "ASUS TUF Gaming NVIDIA GeForce RTX 3090 OC",
-            "url": "https://www.amazon.com/dp/B08HJGNJ81",
-            "buyprice": 2130
-        },
-        {
-            "name": "EVGA 3080 FTW 3 Ultra - CHEAP MISTAKE",
-            "url": "https://www.amazon.com/dp/B08HR3Y5GQ",
-            "buyprice": 25
-        },
-        {
-            "name": "EVGA 3090 FTW3",
-            "url": "https://www.newegg.com/evga-geforce-rtx-3090-24g-p5-3987-kr/p/N82E16814487526",
-            "buyprice": 2000
-        },
-        {
-            "name": "EVGA GeForce RTX 3090 XC3",
-            "url": "https://www.newegg.com/evga-geforce-rtx-3090-24g-p5-3971-kr/p/N82E16814487527",
-            "buyprice": 1800
+            "name": "Roku Remote Two Pack",
+            "url": "https://www.amazon.com/gp/product/B09Z6Q2MLC/",
+            "buyprice": 15
         }
     ],
     "INTERVAL": {
         "unit": "seconds",
-        "value": 5
+        "value": 20
     },
     "TIME_BETWEEN_CHECKS": {
         "unit": "seconds",
-        "value": 5
+        "value": 30
     },
     "STORE_INTERVALS": {
         "microcenter": {
@@ -71,14 +26,14 @@
     },
     "OPEN_URL": false,
     "PURCHASE_AVAILABLE": true,
-    "DESKTOP": true,
-    "AMAZON_MERCHANT_ID": "ATVPDKIKX0DER",
+    "DESKTOP": false,
+    "AMAZON_MERCHANT_ID": "None",
     "TARGET_ZIP_CODE": "90024",
     "TARGET_KEY": "ff457966e64d5e877fdbad070f276d18ecec4a01",
     "WEBHOOK_URLS": [],
     "PROXIES": false,
     "EMAIL": false,
-    "SMS_METHOD": "Pushover",
+    "SMS_METHOD": "None",
     "SUPPORTED_STORES_DOMAINS": [
         "amazon",
         "antonline",
