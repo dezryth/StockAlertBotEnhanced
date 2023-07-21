@@ -25,7 +25,7 @@
         }
     },
     "OPEN_URL": false,
-    "PURCHASE_AVAILABLE": true,
+    "PURCHASE_AVAILABLE": false,
     "DESKTOP": false,
     "AMAZON_MERCHANT_ID": "None",
     "TARGET_ZIP_CODE": "90024",
